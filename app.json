@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "favourite-books-app",
+    "slug": "favourite-books-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/books_logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/books_logo.png",
+      "resizeMode": "cover"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.priyesh.pokedex",
+      "permissions": ["INTERNET"],
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/books_logo.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/books_logo.png"
+    }
+  }
+}
