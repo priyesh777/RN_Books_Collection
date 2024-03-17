@@ -6,55 +6,61 @@ import RegistrationScreen from "./src/screens/Registration";
 import HomeScreen from "./src/screens/HomeScreen";
 import { getToken } from "./src/data/token";
 import { useEffect, useState } from "react";
+import ProfileScreen from "./src/screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [token, setToken] = useState<string | null>(null);
-  const [initialRoute, setInitialRoute] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(null);
+    const [initialRoute, setInitialRoute] = useState<string | null>(null);
 
-  useEffect(() => {
-    const initializeAuth = async () => {
-      const token = await getToken();
-      setToken(token);
-      const route = token ? "Home" : "Registration";
-      setInitialRoute(route);
-    };
-    initializeAuth();
-  }, []);
+    useEffect(() => {
+        const initializeAuth = async () => {
+            const token = await getToken();
+            setToken(token);
+            const route = token ? "Home" : "Registration";
+            setInitialRoute(route);
+        };
+        initializeAuth();
+    }, []);
 
-  if (initialRoute === null) {
-    return null;
-  }
+    if (initialRoute === null) {
+        return null;
+    }
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName={initialRoute}>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Registration"
-          component={RegistrationScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={initialRoute}>
+                <Stack.Screen
+                    name="Login"
+                    component={LoginScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Registration"
+                    component={RegistrationScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="ProfileScreen"
+                    component={ProfileScreen}
+                    options={{ headerShown: false }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });

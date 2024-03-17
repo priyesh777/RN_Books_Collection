@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "../theme/theme";
@@ -29,6 +29,10 @@ export default function LoginScreen(props: LoginScreenProps) {
             console.log(result.data);
             setToken(result.data.token);
             navigation.navigate("Home");
+            Alert.alert(
+                'Success!',
+                `User has successfully logged IN !`,
+            );
         } catch (error) {
             console.log(error);
         }
@@ -73,7 +77,7 @@ export default function LoginScreen(props: LoginScreenProps) {
                             onPress={() => navigation.navigate("Registration")}
                             style={{
                                 textDecorationLine: "underline",
-                                color: colors.primary,
+                                color: colors.secondary,
                                 fontWeight: "bold",
                             }}
                         >

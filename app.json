@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/books_logo.png",
-      "resizeMode": "cover"
+      "resizeMode": "contain"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {

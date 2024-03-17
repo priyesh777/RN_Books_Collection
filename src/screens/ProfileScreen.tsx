@@ -1,20 +1,39 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    Alert,
+    TouchableOpacity,
+} from 'react-native';
+import { setToken } from "../data/token";
 import { colors } from '../theme/theme';
-import { user1 } from '../data/mockedUser';
 
-const SettingList = [
-    {
-        icon: require('../../assets/Profile_Transparent_Icon.png'),
-        title: 'Edit Profile',
-    },
-    {
-        icon: require('../../assets/LockIcon.png'),
-        title: 'Logout',
-    },
-];
+interface ProfileScreenProps {
+    navigation: any;
+}
 
-export default function ProfileScreen() {
+export default function ProfileScreen(props: ProfileScreenProps) {
+
+    const { navigation } = props;
+
+    const onLogoutPress = async () => {
+        console.log("Logout Pressed");
+        try {
+            console.log("Tried to logout");
+            setToken("");
+            navigation.navigate("Login");
+            Alert.alert(
+                'GoodBye!',
+                `User has successfully logged out !`,
+            );
+
+        } catch (error) {
+            console.log("Logout error::", error);
+        }
+    };
+
     return (
         <View style={styles.container}>
             <Image
@@ -31,34 +50,23 @@ export default function ProfileScreen() {
                         paddingBottom: 10,
                     }}
                 >
-                    {user1.username}
+                    HELLO USER !
                 </Text>
                 <View style={styles.innerLayer}>
-                    {SettingList.map((item, index) => (
-                        <View key={index} style={styles.settingList}>
-                            <View
+                    <View style={styles.logoutBox}>
+                        <TouchableOpacity style={styles.logoutBox} onPress={onLogoutPress}>
+                            <Text
                                 style={{
-                                    flexDirection: 'row',
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                    fontSize: 16,
+                                    color: "white",
                                 }}
                             >
-                                <Image source={item.icon} style={{}} />
-                                <Text
-                                    style={{
-                                        marginLeft: 15,
-                                        color: '#495767',
-                                        fontWeight: '600',
-                                    }}
-                                >
-                                    {item.title}
-                                </Text>
-                            </View>
-
-                            <Image
-                                style={{ tintColor: 'gray' }}
-                                source={require('../../assets/Right_Icon.png')}
-                            />
-                        </View>
-                    ))}
+                                LOGOUT
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </View>
@@ -74,7 +82,7 @@ const styles = StyleSheet.create({
     },
     outerLayer: {
         flex: 1 / 2,
-        backgroundColor: "#e3dc78",
+        backgroundColor: colors.primary,
         borderRadius: 16,
         width: '95%',
         height: '40%',
@@ -84,16 +92,17 @@ const styles = StyleSheet.create({
     },
     innerLayer: {
         flex: 1,
-        backgroundColor: '#e3cb85',
+        backgroundColor: colors.primary,
         borderRadius: 16,
         paddingTop: 30,
         paddingHorizontal: 15,
         width: '100%',
     },
-    settingList: {
-        flex: 1 / 2,
-        flexDirection: 'row',
-        alignContent: 'space-between',
-        justifyContent: 'space-between',
-    },
+    logoutBox: {
+        backgroundColor: colors.tertiary,
+        borderRadius: 20,
+        height: 50,
+        minWidth: "80%",
+        justifyContent: "center",
+    }
 });
