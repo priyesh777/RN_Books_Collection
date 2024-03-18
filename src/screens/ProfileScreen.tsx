@@ -7,23 +7,31 @@ import {
     Alert,
     TouchableOpacity,
 } from 'react-native';
+
+// Import setToken function from data/token file and colors object from theme/theme file
 import { setToken } from "../data/token";
 import { colors } from '../theme/theme';
 
+// Define the interface for ProfileScreenProps, which contains navigation property
 interface ProfileScreenProps {
     navigation: any;
 }
 
+// Define the interface for ProfileScreenProps, which contains navigation property
 export default function ProfileScreen(props: ProfileScreenProps) {
 
     const { navigation } = props;
 
+// Define the function to handle logout button press
     const onLogoutPress = async () => {
         console.log("Logout Pressed");
         try {
             console.log("Tried to logout");
+             // Clear user token
             setToken("");
+            // Navigate to Login screen upon successful logout
             navigation.navigate("Login");
+             // Show goodbye alert
             Alert.alert(
                 'GoodBye!',
                 `User has successfully logged out !`,
@@ -34,13 +42,16 @@ export default function ProfileScreen(props: ProfileScreenProps) {
         }
     };
 
+    // Return JSX representing the ProfileScreen component
     return (
         <View style={styles.container}>
+        {/* Render user profile image */}
             <Image
                 style={{ top: 50, zIndex: 2 }}
                 source={require('../../assets/UserProfile.png')}
             />
             <View style={styles.outerLayer}>
+                {/* Render greeting text */}
                 <Text
                     style={{
                         textAlign: 'center',
@@ -54,6 +65,7 @@ export default function ProfileScreen(props: ProfileScreenProps) {
                 </Text>
                 <View style={styles.innerLayer}>
                     <View style={styles.logoutBox}>
+                         {/* Render TouchableOpacity for logout button */}
                         <TouchableOpacity style={styles.logoutBox} onPress={onLogoutPress}>
                             <Text
                                 style={{
@@ -73,6 +85,7 @@ export default function ProfileScreen(props: ProfileScreenProps) {
     );
 }
 
+// Define styles using StyleSheet.create
 const styles = StyleSheet.create({
     container: {
         flex: 1,

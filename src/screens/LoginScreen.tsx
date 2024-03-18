@@ -12,23 +12,31 @@ interface LoginScreenProps {
     navigation: any;
 }
 
+// Define the functional component named LoginScreen
 export default function LoginScreen(props: LoginScreenProps) {
     const { navigation } = props;
 
+     // Declare state variables email and password using useState hook
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+       // Define the function to handle login button press
     const onLoginPress = async () => {
         console.log("Login Pressed");
+        // Create payload object with email and password
         const payload: LoginPayLoad = {
             email,
             password,
         };
         try {
+             // Attempt to login user with provided credentials
             const result = await loginUser(payload);
             console.log(result.data);
+            // Save user token securel
             setToken(result.data.token);
+            // Navigate to Home screen upon successful login
             navigation.navigate("Home");
+            // Show success alert
             Alert.alert(
                 'Success!',
                 `User has successfully logged IN !`,
@@ -38,11 +46,13 @@ export default function LoginScreen(props: LoginScreenProps) {
         }
     };
 
+      // Return JSX representing the LoginScreen component
     return (
         <SafeAreaView style={style.container}>
             <AuthHeader />
 
             <View style={{ flex: 1 / 2 }}>
+                 {/* Render CustomTextInput for email */}
                 <CustomTextInput label="Email" value={email} onChange={setEmail} />
                 <CustomTextInput
                     label="Password"
@@ -52,6 +62,7 @@ export default function LoginScreen(props: LoginScreenProps) {
                 />
 
                 <View style={{ marginVertical: 50 }}>
+                      {/* Render TouchableOpacity for login button */}
                     <TouchableOpacity style={style.button} onPress={onLoginPress}>
                         <Text
                             style={{
@@ -64,6 +75,7 @@ export default function LoginScreen(props: LoginScreenProps) {
                             LOGIN
                         </Text>
                     </TouchableOpacity>
+                     {/* Render text for registering new user */}
                     <Text
                         style={{
                             textAlign: "center",
@@ -90,6 +102,7 @@ export default function LoginScreen(props: LoginScreenProps) {
     );
 }
 
+// Define styles using StyleSheet.create
 const style = StyleSheet.create({
     container: {
         flex: 1,
