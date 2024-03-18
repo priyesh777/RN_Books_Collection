@@ -40,7 +40,10 @@ export default function FavoriteCard({ id, book }: FavoriteCardProps) {
                     <Text
                         style={[
                             styles.firstRowText,
-                            { alignSelf: "flex-start", fontSize: 14 },
+                            {
+                                alignSelf: "flex-start",
+                                fontSize: 14,
+                            },
                         ]}
                     >
                         by {author} &nbsp; &#9733; {rating}
@@ -64,10 +67,15 @@ export default function FavoriteCard({ id, book }: FavoriteCardProps) {
                     <Text
                         style={[
                             styles.firstRowText,
-                            { alignSelf: "flex-start", fontWeight: "normal", marginTop: 10 },
+                            {
+                                alignSelf: "flex-start",
+                                fontWeight: "normal",
+                                marginTop: 10,
+                                fontSize: 12
+                            },
                         ]}
                     >
-                        {description.slice(0, 30) + "..."}
+                        {description.slice(0, 40) + "..."}
                     </Text>
                 </View>
 

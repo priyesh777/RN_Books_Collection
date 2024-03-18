@@ -13,3 +13,6 @@ yarn run ios
 
 ## Preview of the application
 
+![App screenshot](./assets/RN_1.png)
+![App screenshot](./assets/RN_2.png)
+![App screenshot](./assets/rn_3.png)
