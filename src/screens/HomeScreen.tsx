@@ -9,18 +9,27 @@ import { getBooks } from "../api/books";
 
 const Tab = createBottomTabNavigator();
 
+
 export default function HomeScreen() {
+    // Declare state variable 'books' using useState hook,
+    // initialized as an empty array of BookDetail objects
     const [books, setBooks] = useState<BookDetail[]>([]);
 
     useEffect(() => {
+    // Define an asynchronous function initFetchBooks to fetch books data
         const initFetchBooks = async () => {
             try {
+                 // Fetch books data asynchronously using the getBooks function
                 const books = await getBooks();
+
+                // Set the fetched books data to the 'books' state variable
                 setBooks(books.data);
             } catch (error) {
+                // Log any errors occurred during fetching books data
                 console.error(error);
             }
         };
+        // Call the initFetchBooks function defined above
         initFetchBooks();
     }, []);
 
@@ -32,6 +41,7 @@ export default function HomeScreen() {
                     headerShown: true,
                     title: "All Books",
                     tabBarIcon: ({ focused }) => (
+                         // Render an Image component for the tabBarIcon, tinted based on focus state
                         <Image
                             tintColor={focused ? colors.secondary : "gray"}
                             source={require("../../assets/FavoriteIcon.png")}
@@ -47,6 +57,7 @@ export default function HomeScreen() {
                 options={{
                     headerShown: true,
                     title: `User Profile`,
+                    // Set options for the "Profile" tab, including title and tabBarIcon
                     tabBarIcon: ({ focused }) => (
                         <Image
                             tintColor={focused ? colors.secondary : "gray"}

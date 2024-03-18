@@ -1,3 +1,7 @@
+/* Books Collection, Chandrika Ghale, 200575692, 3/17/2024
+Priyesh Gautam, 200568939,3/17/2024
+*/
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StyleSheet } from "react-native";
@@ -7,7 +11,9 @@ import HomeScreen from "./src/screens/HomeScreen";
 import { getToken } from "./src/data/token";
 import { useEffect, useState } from "react";
 import ProfileScreen from "./src/screens/ProfileScreen";
-
+/*
+Main app component for rendering the naviation stack and managing user authentication
+*/
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -15,10 +21,12 @@ export default function App() {
     const [initialRoute, setInitialRoute] = useState<string | null>(null);
 
     useEffect(() => {
+        //  Define an asynchronous function initializeAuth to handle authentication initialization
         const initializeAuth = async () => {
             const token = await getToken();
             setToken(token);
             const route = token ? "Home" : "Registration";
+             // Set the initial route state variabl
             setInitialRoute(route);
         };
         initializeAuth();
