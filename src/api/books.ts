@@ -4,13 +4,14 @@ import { baseUrl } from "./users";
 import { getToken } from "../data/token";
 
 export const getBooks = async (): Promise<AxiosResponse<BookDetail[]>> => {
-  const token = await getToken();
-  return axios({
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    method: "get",
-    url: `${baseUrl}/books`,
-  });
+    const token = await getToken();
+    console.log("Token saved in local::>>", token);
+    return axios({
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        method: "get",
+        url: `${baseUrl}/books`,
+    });
 };

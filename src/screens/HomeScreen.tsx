@@ -16,16 +16,17 @@ export default function HomeScreen() {
     const [books, setBooks] = useState<BookDetail[]>([]);
 
     useEffect(() => {
-    // Define an asynchronous function initFetchBooks to fetch books data
+        // Define an asynchronous function initFetchBooks to fetch books data
         const initFetchBooks = async () => {
             try {
-                 // Fetch books data asynchronously using the getBooks function
+                // Fetch books data asynchronously using the getBooks function
                 const books = await getBooks();
 
                 // Set the fetched books data to the 'books' state variable
                 setBooks(books.data);
             } catch (error) {
                 // Log any errors occurred during fetching books data
+                console.log("Also chceck if the server is running :>>>");
                 console.error(error);
             }
         };
@@ -41,7 +42,7 @@ export default function HomeScreen() {
                     headerShown: true,
                     title: "All Books",
                     tabBarIcon: ({ focused }) => (
-                         // Render an Image component for the tabBarIcon, tinted based on focus state
+                        // Render an Image component for the tabBarIcon, tinted based on focus state
                         <Image
                             tintColor={focused ? colors.secondary : "gray"}
                             source={require("../../assets/FavoriteIcon.png")}

@@ -28,7 +28,7 @@ export default function FavoriteCard({ id, book }: FavoriteCardProps) {
         //onPress={() => navigation.navigate('Detail', { data, index: id })}
         >
             <View key={booksName} style={styles.row}>
-                <View>
+                <View style={styles.contentWrapper}>
                     <Text
                         style={[
                             styles.firstRowText,
@@ -79,15 +79,17 @@ export default function FavoriteCard({ id, book }: FavoriteCardProps) {
                     </Text>
                 </View>
 
-                <Image
-                    style={{
-                        width: 120,
-                        height: 120,
-                        alignSelf: "flex-end",
-                        marginLeft: 10,
-                    }}
-                    source={require('../../assets/books_logo.png')}
-                />
+                <View style={styles.imageWrapper}>
+                    <Image
+                        style={{
+                            width: 120,
+                            height: 120,
+                            alignSelf: "flex-end",
+                            marginLeft: 10,
+                        }}
+                        source={require('../../assets/books_logo.png')}
+                    />
+                </View>
             </View>
         </TouchableOpacity>
     );
@@ -110,9 +112,17 @@ const styles = StyleSheet.create({
 
     row: {
         flexDirection: "row",
-        alignContent: "space-around",
+        alignContent: "space-between",
         justifyContent: "space-between",
         width: "90%",
+    },
+
+    contentWrapper: {
+        flex: 0,
+    },
+
+    imageWrapper: {
+        flex: 1,
     },
 
     typeSection: {

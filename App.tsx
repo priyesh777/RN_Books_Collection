@@ -25,8 +25,8 @@ export default function App() {
         const initializeAuth = async () => {
             const token = await getToken();
             setToken(token);
-            const route = token ? "Home" : "Registration";
-             // Set the initial route state variabl
+            const route = token ? "Home" : "Login";
+            // Set the initial route state variable
             setInitialRoute(route);
         };
         initializeAuth();
