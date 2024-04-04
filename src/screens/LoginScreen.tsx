@@ -1,12 +1,12 @@
+import React, { useEffect, useState, useContext } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
-import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colors } from "../theme/theme";
 import AuthHeader from "../components/AuthHeader";
 import CustomTextInput from "../components/CustomTextInput";
 import { LoginPayLoad, loginUser } from "../api/users";
-import * as SecureStore from "expo-secure-store";
 import { setToken } from "../data/token";
+import UserContext from "../data/userContext";
 
 interface LoginScreenProps {
     navigation: any;
@@ -15,6 +15,8 @@ interface LoginScreenProps {
 // Define the functional component named LoginScreen
 export default function LoginScreen(props: LoginScreenProps) {
     const { navigation } = props;
+
+    const { setUserInfo } = useContext(UserContext);
 
     // Declare state variables email and password using useState hook
     const [email, setEmail] = useState("");
@@ -34,6 +36,7 @@ export default function LoginScreen(props: LoginScreenProps) {
             console.log("Response for login function::>>", result.data);
             // Save user token securel
             setToken(result.data.token);
+            setUserInfo(email);
             // Navigate to Home screen upon successful login
             navigation.navigate("Home");
             setEmail("");
@@ -44,7 +47,7 @@ export default function LoginScreen(props: LoginScreenProps) {
                 `User has successfully logged IN !`,
             );
         } catch (error) {
-            console.log("Also chceck if the server is running :>>>");
+            console.log("Also check if the server is running :>>>");
             console.log("Login error traced::>>", error);
             Alert.alert(
                 'Failed request',

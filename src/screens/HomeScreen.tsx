@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, {
+    useEffect,
+    useState,
+} from "react";
 import FavouriteScreen from "./FavouriteScreen";
 import ProfileScreen from "./ProfileScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -11,6 +14,7 @@ const Tab = createBottomTabNavigator();
 
 
 export default function HomeScreen() {
+
     // Declare state variable 'books' using useState hook,
     // initialized as an empty array of BookDetail objects
     const [books, setBooks] = useState<BookDetail[]>([]);
@@ -20,13 +24,13 @@ export default function HomeScreen() {
         const initFetchBooks = async () => {
             try {
                 // Fetch books data asynchronously using the getBooks function
-                const books = await getBooks();
+                const bookResponse = await getBooks();
 
                 // Set the fetched books data to the 'books' state variable
-                setBooks(books.data);
+                setBooks(bookResponse.data);
             } catch (error) {
                 // Log any errors occurred during fetching books data
-                console.log("Also chceck if the server is running :>>>");
+                console.log("Also check if the server is running :>>>");
                 console.error(error);
             }
         };

@@ -11,12 +11,14 @@ import HomeScreen from "./src/screens/HomeScreen";
 import { getToken } from "./src/data/token";
 import { useEffect, useState } from "react";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import UserContext from "./src/data/userContext";
 /*
 Main app component for rendering the naviation stack and managing user authentication
 */
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+    const [userInfo, setUserInfo] = useState();
     const [token, setToken] = useState<string | null>(null);
     const [initialRoute, setInitialRoute] = useState<string | null>(null);
 
@@ -37,30 +39,32 @@ export default function App() {
     }
 
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName={initialRoute}>
-                <Stack.Screen
-                    name="Login"
-                    component={LoginScreen}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Registration"
-                    component={RegistrationScreen}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="Home"
-                    component={HomeScreen}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="ProfileScreen"
-                    component={ProfileScreen}
-                    options={{ headerShown: false }}
-                />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <UserContext.Provider value={{ userInfo, setUserInfo }}>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName={initialRoute}>
+                    <Stack.Screen
+                        name="Login"
+                        component={LoginScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Registration"
+                        component={RegistrationScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="Home"
+                        component={HomeScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="ProfileScreen"
+                        component={ProfileScreen}
+                        options={{ headerShown: false }}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </UserContext.Provider>
     );
 }
 
