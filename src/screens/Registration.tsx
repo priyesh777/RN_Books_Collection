@@ -6,7 +6,7 @@ import AuthHeader from "../components/AuthHeader";
 import CustomTextInput from "../components/CustomTextInput";
 import { RegisterUserPayload, registerUser } from "../api/users";
 
-// Define the interface for RegistrationScreenProps, which contains navigation property
+// Define the interface for RegistrationScreenProps
 interface RegistrationScreenProps {
     navigation: any;
 }

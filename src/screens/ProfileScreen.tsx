@@ -44,6 +44,10 @@ export default function ProfileScreen(props: ProfileScreenProps) {
         }
     };
 
+    const createNewBook = () => {
+        navigation.navigate("AddBookScreen");
+    };
+
     // Return JSX representing the ProfileScreen component
     return (
         <View style={styles.container}>
@@ -63,8 +67,25 @@ export default function ProfileScreen(props: ProfileScreenProps) {
                         paddingBottom: 10,
                     }}
                 >
-                    USER:&nbsp;  {userInfo}
+                    USER:&nbsp;  {userInfo ?? "---"}
                 </Text>
+                <View style={styles.innerLayer}>
+                    <View style={styles.logoutBox}>
+                        {/* Render TouchableOpacity for create book button */}
+                        <TouchableOpacity style={styles.logoutBox} onPress={createNewBook}>
+                            <Text
+                                style={{
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                    fontSize: 16,
+                                    color: "white",
+                                }}
+                            >
+                                ADD NEW BOOK +
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
                 <View style={styles.innerLayer}>
                     <View style={styles.logoutBox}>
                         {/* Render TouchableOpacity for logout button */}
