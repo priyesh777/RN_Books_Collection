@@ -1,3 +1,6 @@
+/* Books Collection, Chandrika Ghale, 200575692, 4/4/2024
+Priyesh Gautam, 200568939,4/4/2024
+*/
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
 import { colors } from '../theme/theme';
