@@ -33,6 +33,14 @@ export default function FavoriteCard(props: FavoriteCardProps) {
         rating,
     } = book;
 
+    const booksLatestData = {
+        bookTitle: booksName ?? " ",
+        bookGenre: genre[0] ?? " ",
+        bookDescription: description ?? " ",
+        booksAuthor: author ?? " ",
+        booksRating: rating ?? " ",
+    };
+
     const handleDeleteBook = async (bookId: string) => {
         try {
             await deleteBook(bookId);
@@ -71,7 +79,7 @@ export default function FavoriteCard(props: FavoriteCardProps) {
                             { alignSelf: "flex-start", fontSize: 18 },
                         ]}
                     >
-                        {booksName}
+                        {booksLatestData.bookTitle}
                     </Text>
                     <Text
                         style={[
@@ -82,7 +90,7 @@ export default function FavoriteCard(props: FavoriteCardProps) {
                             },
                         ]}
                     >
-                        by {author} &nbsp; &#9733; {rating}
+                        by {booksLatestData.booksAuthor} &nbsp; &#9733; {booksLatestData.booksRating}
                     </Text>
                     <Text
                         style={[
@@ -99,7 +107,7 @@ export default function FavoriteCard(props: FavoriteCardProps) {
                             },
                         ]}
                     >
-                        {genre[0]}
+                        {booksLatestData.bookGenre}
                     </Text>
                     <Text
                         style={[
@@ -112,7 +120,7 @@ export default function FavoriteCard(props: FavoriteCardProps) {
                             },
                         ]}
                     >
-                        {description.slice(0, 40) + "..."}
+                        {(booksLatestData?.bookDescription ? (booksLatestData.bookDescription.slice(0, 40) + "...") : ".....")}
                     </Text>
                 </View>
 

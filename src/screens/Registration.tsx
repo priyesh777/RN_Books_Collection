@@ -48,7 +48,7 @@ export default function Registration(props: RegistrationScreenProps) {
             if (response.status === 400) {
                 // If user already exists, set loading state to false and show alert
                 setLoading(false);
-                alert("User already exists");
+                alert("Sorry, could not register right now!");
             }
         } catch (error) {
             // If an error occurs during registration, log the error and show alert
