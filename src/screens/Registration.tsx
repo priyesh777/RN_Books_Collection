@@ -6,7 +6,7 @@ import AuthHeader from "../components/AuthHeader";
 import CustomTextInput from "../components/CustomTextInput";
 import { RegisterUserPayload, registerUser } from "../api/users";
 
-// Define the interface for RegistrationScreenProps, which contains navigation property
+// Define the interface for RegistrationScreenProps
 interface RegistrationScreenProps {
     navigation: any;
 }
@@ -22,10 +22,10 @@ export default function Registration(props: RegistrationScreenProps) {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
-// Define the function to handle sign up button press
+    // Define the function to handle sign up button press
     const handleSignUp = async () => {
         setLoading(true);
-         // Create data object with user registration details
+        // Create data object with user registration details
         const data: RegisterUserPayload = {
             name: username,
             email,
@@ -36,9 +36,9 @@ export default function Registration(props: RegistrationScreenProps) {
             const response = await registerUser(data);
             console.log(response);
             if (response.status === 200) {
-                 // If registration is successful, set loading state to false
+                // If registration is successful, set loading state to false
                 setLoading(false);
-                 // Show success alert and navigate to Login screen
+                // Show success alert and navigate to Login screen
                 Alert.alert(
                     'Congratulations!',
                     `User has successfully registered !`,
@@ -48,10 +48,11 @@ export default function Registration(props: RegistrationScreenProps) {
             if (response.status === 400) {
                 // If user already exists, set loading state to false and show alert
                 setLoading(false);
-                alert("User already exists");
+                alert("Sorry, could not register right now!");
             }
         } catch (error) {
-             // If an error occurs during registration, log the error and show alert
+            // If an error occurs during registration, log the error and show alert
+            console.log("Also chceck if the server is running :>>>");
             console.log(error);
             setLoading(false);
             alert("User already exists");

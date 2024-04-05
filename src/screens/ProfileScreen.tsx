@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     View,
     Text,
@@ -11,6 +11,8 @@ import {
 // Import setToken function from data/token file and colors object from theme/theme file
 import { setToken } from "../data/token";
 import { colors } from '../theme/theme';
+import UserContext from "../data/userContext";
+
 
 // Define the interface for ProfileScreenProps, which contains navigation property
 interface ProfileScreenProps {
@@ -22,18 +24,18 @@ export default function ProfileScreen(props: ProfileScreenProps) {
 
     const { navigation } = props;
 
-// Define the function to handle logout button press
+    const { userInfo } = useContext(UserContext);
+
+    // Define the function to handle logout button press
     const onLogoutPress = async () => {
         console.log("Logout Pressed");
         try {
-            console.log("Tried to logout");
-             // Clear user token
+            // Clear user token
             setToken("");
             // Navigate to Login screen upon successful logout
             navigation.navigate("Login");
-             // Show goodbye alert
+            // Show Logout alert
             Alert.alert(
-                'GoodBye!',
                 `User has successfully logged out !`,
             );
 
@@ -42,10 +44,14 @@ export default function ProfileScreen(props: ProfileScreenProps) {
         }
     };
 
+    const createNewBook = () => {
+        navigation.navigate("AddBookScreen");
+    };
+
     // Return JSX representing the ProfileScreen component
     return (
         <View style={styles.container}>
-        {/* Render user profile image */}
+            {/* Render user profile image */}
             <Image
                 style={{ top: 50, zIndex: 2 }}
                 source={require('../../assets/UserProfile.png')}
@@ -61,11 +67,28 @@ export default function ProfileScreen(props: ProfileScreenProps) {
                         paddingBottom: 10,
                     }}
                 >
-                    HELLO USER !
+                    USER:&nbsp;  {userInfo ?? "---"}
                 </Text>
                 <View style={styles.innerLayer}>
                     <View style={styles.logoutBox}>
-                         {/* Render TouchableOpacity for logout button */}
+                        {/* Render TouchableOpacity for create book button */}
+                        <TouchableOpacity style={styles.logoutBox} onPress={createNewBook}>
+                            <Text
+                                style={{
+                                    textAlign: "center",
+                                    fontWeight: "bold",
+                                    fontSize: 16,
+                                    color: "white",
+                                }}
+                            >
+                                ADD NEW BOOK +
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <View style={styles.innerLayer}>
+                    <View style={styles.logoutBox}>
+                        {/* Render TouchableOpacity for logout button */}
                         <TouchableOpacity style={styles.logoutBox} onPress={onLogoutPress}>
                             <Text
                                 style={{
