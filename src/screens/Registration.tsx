@@ -1,3 +1,6 @@
+/* Books Collection, Chandrika Ghale, 200575692, 4/4/2024
+Priyesh Gautam, 200568939,4/4/2024
+*/
 import { StyleSheet, Text, TouchableOpacity, View, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
