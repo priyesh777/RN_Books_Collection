@@ -30,6 +30,13 @@ export default function LoginScreen(props: LoginScreenProps) {
             password,
         };
         console.log("Login Pressed with payload ::>>", email, password);
+        if (email === "" && password === "") {
+
+            return Alert.alert(
+                'Failed request',
+                `Invalid Credentials !`,
+            );
+        }
         try {
             // Attempt to login user with provided credentials
             const result = await loginUser(payload);

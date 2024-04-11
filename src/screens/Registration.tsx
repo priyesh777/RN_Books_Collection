@@ -34,6 +34,17 @@ export default function Registration(props: RegistrationScreenProps) {
             email,
             password,
         };
+        if (
+            username === ""
+            && email === ""
+            && password === ""
+            && confirmPassword === ""
+        ) {
+            return Alert.alert(
+                'Failed request',
+                `Invalid Credentials !`,
+            );
+        }
         try {
             // Attempt to register user with provided details
             const response = await registerUser(data);
@@ -58,7 +69,7 @@ export default function Registration(props: RegistrationScreenProps) {
             console.log("Also chceck if the server is running :>>>");
             console.log(error);
             setLoading(false);
-            alert("User already exists");
+            alert("Invalid Credentials !");
         }
     };
 
